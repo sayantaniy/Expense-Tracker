@@ -1,19 +1,152 @@
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Corben:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Serif+Text:ital@0;1&family=Forum&family=Geist:wght@100..900&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Inconsolata:wght@200..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lexend&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Patrick+Hand+SC&family=Playwrite+US+Trad+Guides&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Radley:ital@0;1&family=Rubik:ital,wght@0,300..900;1,300..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import "tailwindcss";
+
+
+
+.font-comic {
+  font-family: "Comic Relief", cursive;
 }
 
-html,
-body {
-  height: 100%;
+.font-corben {
+  font-family: "Corben", serif;
 }
 
+.font-crimson {
+  font-family: "Crimson Text", serif;
+}
+
+.font-dmserif {
+  font-family: "DM Serif Text", serif;
+}
+
+.font-forum {
+  font-family: "Forum", serif;
+}
+
+.font-geist {
+  font-family: "Geist", sans-serif;
+}
+
+.font-googlesans {
+  font-family: "Google Sans", sans-serif;
+}
+
+.font-inconsolata {
+  font-family: "Inconsolata", monospace;
+}
+
+.font-instrumentsans {
+  font-family: "Instrument Sans", sans-serif;
+}
+
+.font-instrumentserif {
+  font-family: "Instrument Serif", serif;
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
+
+.font-jetbrains {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.font-lexend {
+  font-family: "Lexend", sans-serif;
+}
+
+.font-noto {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.font-patrick {
+  font-family: "Patrick Hand SC", cursive;
+}
+
+.font-playwrite {
+  font-family: "Playwrite US Trad Guides", serif;
+}
+
+.font-poppins {
+  font-family: "Poppins", sans-serif;
+}
+
+.font-radley {
+  font-family: "Radley", serif;
+}
+
+.font-rubik {
+  font-family: "Rubik", sans-serif;
+}
+
+.font-spacemono {
+  font-family: "Space Mono", monospace;
+}
+
+/* Color Palette */
+:root {
+  --color-orange: #FF7F11;
+  --color-sage: #ACBFA4;
+  --color-light-sage: #E2E8CE;
+  --color-black: #262626;
+
+  /* Optional semantic names */
+  --primary: var(--color-orange);
+  --secondary: var(--color-sage);
+  --background: var(--color-light-sage);
+  --text: var(--color-black);
+}
+
+/* Example usage */
 body {
-  width: 100%;
-  font-family: system-ui, sans-serif;
-  background-color: #1b1b1c;
-  color: #ffffff;
+  background-color: var(--color-black);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+.button-primary {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  opacity: 0.9;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid var(--secondary);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.text-accent {
+  color: var(--primary);
+}
+
+.bg-sage {
+  background-color: var(--secondary);
+}
+
+.bg-light {
+  background-color: var(--background);
+}
+
+.bg-dark {
+  background-color: var(--text);
+  color: white;
+}
+
+.text-accent2 {
+  color: #262626;
+}
+.text-accent3 {
+  color:  #586353;
+}
+.text-accent4 {
+  color:  #dbebd3;
 }

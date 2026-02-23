@@ -1,0 +1,51 @@
+/* Color Palette */
+:root {
+  --color-orange: #FF7F11;
+  --color-sage: #ACBFA4;
+  --color-light-sage: #E2E8CE;
+  --color-black: #262626;
+
+  /* Optional semantic names */
+  --primary: var(--color-orange);
+  --secondary: var(--color-sage);
+  --background: var(--color-light-sage);
+  --text: var(--color-black);
+}
+
+
+.button-primary {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  opacity: 0.9;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid var(--secondary);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.text-accent {
+  color: var(--primary);
+}
+
+.bg-sage {
+  background-color: var(--secondary);
+}
+
+.bg-light {
+  background-color: var(--background);
+}
+
+.bg-dark {
+  background-color: var(--text);
+  color: white;
+}
