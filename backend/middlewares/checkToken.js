@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 function checkToken(req,res,next){
     const token = req.cookies.token
     if (!token){
-        res.status(403).json({
+        return res.status(403).json({
             message:"Unauthorized Access"
         })
     }else{
@@ -12,7 +12,7 @@ function checkToken(req,res,next){
             req.user = decoded
             next()
         }catch(err){
-            res.status(403).json({
+            return res.status(403).json({
                 message:"Invalid Token"
             })
         }

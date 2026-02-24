@@ -15,7 +15,7 @@ const Navbar = () => {
             </button>
           </Link>
           <Link to="/register">
-            <button className="bg-orange-600 text-white px-4 py-2 rounded-lg">
+            <button className="bg-orange text-white px-4 py-2 rounded-lg">
               Sign Up
             </button>
           </Link>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Herosection = () => {
   return (
@@ -12,10 +13,11 @@ const Herosection = () => {
           Manage your daily expenses, track spending habits, and stay in control
           of your finances with our simple expense tracker.
         </p>
-
+        <Link to="/transactions">
         <button className=" button-primary text-white px-6 py-3 rounded-lg text-lg ">
           Get Started
         </button>
+        </Link>
       </div>
     </div>
   )
