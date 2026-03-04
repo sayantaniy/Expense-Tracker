@@ -6,10 +6,12 @@ import Features from "../components/Features";
 const Home = () => {
 
   return (
-    <div className="min-h-screen bg-dark font-jetbrains">
+    <div className="min-h-screen bg-dark flex flex-col font-jetbrains">
       <Navbar />
-      <Herosection />
-      <Features />
+      <main className="flex-grow">
+        <Herosection />
+        <Features />
+      </main>
       <Footer />
     </div>
   );

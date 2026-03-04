@@ -15,7 +15,7 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-4">
             <Link to="/login">
-              <button className="text-orange-600 hover:text-orange-800 transition-colors">
+              <button className="text-orange-600 hover:text-orange-800 px-4 py-2 transition-colors">
                 Login
               </button>
             </Link>

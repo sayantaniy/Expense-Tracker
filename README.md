@@ -213,10 +213,5 @@
 - Frontend: ESLint configured; run `npm run lint` before committing
 - Commit messages: Use present tense ("Add feature" not "Added feature")
 
-**License**
-- MIT — see [LICENSE](LICENSE) file for full text
-- Feel free to reuse and adapt for personal, educational, or commercial projects
-- Attribution appreciated but not required
-
 **Author**
-- Sayantani Manna — [GitHub Profile](https://github.com/sayantanimanna)
+- Sayantani Manna 

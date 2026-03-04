@@ -2,8 +2,8 @@ import React from 'react'
 
 const Features = () => {
   return (
-    <div>
-      <div className="mt-12 md:mt-20 px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+    <div className="pb-8 md:pb-12">
+      <div className="mt-12 md:mt-20 px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 md:mb-12">
         
         <div className="bg-light p-6 rounded-xl shadow hover:shadow-lg transition-shadow">
           <h3 className="text-lg md:text-xl font-semibold mb-2 text-accent3">

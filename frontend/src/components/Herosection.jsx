@@ -5,8 +5,8 @@ const Herosection = () => {
   return (
     <div>
       {/* Hero Section */}
-      <div className="flex flex-col items-center justify-center text-center mt-16 md:mt-20 px-4 py-12">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+      <div className="flex flex-col items-center justify-center text-center mt-13 md:mt-20 px-4 py-12">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-white">
           Track Your Expenses Easily
         </h2>
         <p className="text-accent3 max-w-lg md:max-w-xl mb-6 text-sm md:text-base">
