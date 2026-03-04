@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const categories = [
 	"Food",
@@ -30,6 +31,7 @@ const Transaction = () => {
 	const [transactions, setTransactions] = useState([]);
 	const [fetchLoading, setFetchLoading] = useState(true);
 	const [deleting, setDeleting] = useState(null);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetchTransactions();
@@ -44,7 +46,12 @@ const Transaction = () => {
 			setTransactions(response.data.transactions || []);
 		} catch (err) {
 			console.error(err);
-			setMessage("Failed to fetch transactions");
+			if (err.response?.status === 403) {
+				// User is not authenticated, redirect to login
+				navigate('/login');
+			} else {
+				setMessage("Failed to fetch transactions");
+			}
 		} finally {
 			setFetchLoading(false);
 		}
@@ -61,7 +68,11 @@ const Transaction = () => {
 			setMessage("Transaction deleted successfully");
 		} catch (err) {
 			console.error(err);
-			setMessage("Failed to delete transaction");
+			if (err.response?.status === 403) {
+				navigate('/login');
+			} else {
+				setMessage("Failed to delete transaction");
+			}
 		} finally {
 			setDeleting(null);
 		}
@@ -93,9 +104,13 @@ const Transaction = () => {
 			fetchTransactions();
 		} catch (err) {
 			console.error(err);
-			setMessage(
-				err?.response?.data?.message || "Failed to create transaction"
-			);
+			if (err.response?.status === 403) {
+				navigate('/login');
+			} else {
+				setMessage(
+					err?.response?.data?.message || "Failed to create transaction"
+				);
+			}
 		} finally {
 			setLoading(false);
 		}
