@@ -27,10 +27,15 @@ async function registerUser(req, res) {
     });
 
     // Sign token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '365d' });
 
     // Set cookie
-    res.cookie("token", token);
+    res.cookie("token", token,{
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
+    });
 
     // Success response
     return res.status(201).json({
@@ -64,7 +69,7 @@ async function loginUser(req, res) {
   const checkPassword = await bcrypt.compare(password, user.password);
 
   if (!checkPassword) {
-    return res.status(409).json({
+    return res.status(401).json({
       message: "Invalid Credentials",
     });
   }
@@ -74,9 +79,15 @@ async function loginUser(req, res) {
       id: user._id,
     },
     process.env.JWT_SECRET,
+    { expiresIn: '365d' }
   );
 
-  res.cookie("token", token);
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
+  });
 
   res.status(201).json({
     message: "Logged in Succesfully",

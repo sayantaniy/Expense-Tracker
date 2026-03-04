@@ -1,4 +1,4 @@
-Expense Tracker — Version 1
+***Expense Tracker — Version 1***
 
 **Overview**
 - **Project:** Expense Tracker — a simple full‑stack app to record, list and delete user expenses.

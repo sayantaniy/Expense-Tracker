@@ -20,7 +20,7 @@ const Register = () => {
     };
 
     try {
-      await axios.post("http://localhost:3000/api/auth/register", data, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/register`, data, {
         withCredentials: true,
       });
       navigate("/transactions");
@@ -33,48 +33,48 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-dark flex items-center justify-center h-screen">
+    <div className="bg-dark flex items-center justify-center min-h-screen px-4">
       <form
         onSubmit={handleSubmit}
-        className="h-[50%] flex flex-col items-center justify-center bg-sage p-10 rounded-2xl w-[30%] text-accent2 outline-none font-jetbrains"
+        className="w-full max-w-md flex flex-col items-center justify-center bg-sage p-6 md:p-10 rounded-2xl text-accent2 font-jetbrains"
       >
-        <h1 className="text-2xl font-bold text-black mb-4">Sign Up</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-black mb-6">Sign Up</h1>
         <input
           type="text"
           name="name"
           placeholder="Name"
           required
-          className="mb-2 p-2 border-b rounded w-full max-w-xs"
+          className="mb-3 p-3 border-b rounded w-full max-w-xs focus:outline-none focus:ring-2 focus:ring-orange-300"
         />
         <input
           type="text"
           name="username"
           placeholder="Username"
           required
-          className="mb-2 p-2 border-b rounded w-full max-w-xs"
+          className="mb-3 p-3 border-b rounded w-full max-w-xs focus:outline-none focus:ring-2 focus:ring-orange-300"
         />
         <input
           type="email"
           name="email"
           placeholder="Email"
           required
-          className="mb-2 p-2 border-b rounded w-full max-w-xs"
+          className="mb-3 p-3 border-b rounded w-full max-w-xs focus:outline-none focus:ring-2 focus:ring-orange-300"
         />
         <input
           type="password"
           name="password"
           placeholder="Password"
           required
-          className="mb-2 p-2 border-b rounded w-full max-w-xs"
+          className="mb-3 p-3 border-b rounded w-full max-w-xs focus:outline-none focus:ring-2 focus:ring-orange-300"
         />
         <button
-          className="button-primary mt-5 hover: disabled:opacity-50"
+          className="button-primary mt-5 hover:bg-orange-600 disabled:opacity-50 w-full max-w-xs py-3"
           type="submit"
           disabled={loading}
         >
           {loading ? "Registering..." : "Register"}
         </button>
-        {error && <div className="mt-4 text-red-600 text-sm">{error}</div>}
+        {error && <div className="mt-4 text-red-600 text-sm text-center">{error}</div>}
       </form>
     </div>
   );

@@ -38,7 +38,7 @@ const Transaction = () => {
 	const fetchTransactions = async () => {
 		try {
 			const response = await axios.get(
-				"http://localhost:3000/api/transactions/list",
+				`${import.meta.env.VITE_API_BASE_URL}/api/transactions/list`,
 				{ withCredentials: true }
 			);
 			setTransactions(response.data.transactions || []);
@@ -54,7 +54,7 @@ const Transaction = () => {
 		setDeleting(id);
 		try {
 			await axios.delete(
-				`http://localhost:3000/api/transactions/delete/${id}`,
+				`${import.meta.env.VITE_API_BASE_URL}/api/transactions/delete/${id}`,
 				{ withCredentials: true }
 			);
 			setTransactions(transactions.filter((t) => t._id !== id));
@@ -81,7 +81,7 @@ const Transaction = () => {
 
 		try {
 			await axios.post(
-				"http://localhost:3000/api/transactions/add",
+				`${import.meta.env.VITE_API_BASE_URL}/api/transactions/add`,
 				payload,
 				{ withCredentials: true }
 			);
@@ -102,18 +102,18 @@ const Transaction = () => {
 	};
 
 	return (
-		<div className="bg-dark min-h-screen p-6 font-jetbrains">
+		<div className="bg-dark min-h-screen p-4 md:p-6 font-jetbrains">
 			<div className="max-w-6xl mx-auto">
-				<h1 className="text-3xl font-bold text-sage mb-8">Expense Tracker</h1>
+				<h1 className="text-2xl md:text-3xl font-bold text-sage mb-6 md:mb-8 text-center md:text-left">Expense Tracker</h1>
 
 				{/* Form Section */}
 				<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 					<div className="lg:col-span-1">
 						<form
 							onSubmit={handleSubmit}
-							className="flex flex-col items-start gap-4 bg-sage p-6 rounded-2xl text-accent2 font-jetbrains sticky top-6"
+							className="flex flex-col items-start gap-4 bg-sage p-4 md:p-6 rounded-2xl text-accent2 font-jetbrains"
 						>
-							<h2 className="text-2xl font-bold text-black mb-2">
+							<h2 className="text-xl md:text-2xl font-bold text-black mb-2">
 								Add Transaction
 							</h2>
 
@@ -125,8 +125,9 @@ const Transaction = () => {
 									value={amount}
 									onChange={(e) => setAmount(e.target.value)}
 									required
-									className="mt-1 p-2 border-b rounded w-full"
+									className="mt-1 p-3 border-b rounded w-full focus:outline-none focus:ring-2 focus:ring-orange-300"
 									step="0.01"
+									placeholder="0.00"
 								/>
 							</label>
 
@@ -137,7 +138,7 @@ const Transaction = () => {
 									value={category}
 									onChange={(e) => setCategory(e.target.value)}
 									required
-									className="mt-1 p-2 border-b rounded w-full"
+									className="mt-1 p-3 border-b rounded w-full focus:outline-none focus:ring-2 focus:ring-orange-300"
 								>
 									{categories.map((c) => (
 										<option key={c} value={c}>
@@ -155,7 +156,8 @@ const Transaction = () => {
 									value={description}
 									onChange={(e) => setDescription(e.target.value)}
 									required
-									className="mt-1 p-2 border-b rounded w-full"
+									className="mt-1 p-3 border-b rounded w-full focus:outline-none focus:ring-2 focus:ring-orange-300"
+									placeholder="What did you spend on?"
 								/>
 							</label>
 
@@ -166,20 +168,20 @@ const Transaction = () => {
 									name="date"
 									value={date}
 									onChange={(e) => setDate(e.target.value)}
-									className="mt-1 p-2 border-b rounded w-full"
+									className="mt-1 p-3 border-b rounded w-full focus:outline-none focus:ring-2 focus:ring-orange-300"
 								/>
 							</label>
 
 							<button
 								type="submit"
 								disabled={loading}
-								className="button-primary mt-4 w-full"
+								className="button-primary mt-4 w-full py-3 hover:bg-orange-600 disabled:opacity-50"
 							>
 								{loading ? "Saving..." : "Add Transaction"}
 							</button>
 
 							{message && (
-								<div className="mt-2 text-sm text-black bg-yellow-200 p-2 rounded w-full">
+								<div className="mt-2 text-sm text-black bg-yellow-200 p-3 rounded w-full text-center">
 									{message}
 								</div>
 							)}
@@ -188,55 +190,86 @@ const Transaction = () => {
 
 					{/* List Section */}
 					<div className="lg:col-span-2">
-						<div className="bg-sage p-6 rounded-2xl">
-							<h2 className="text-2xl font-bold text-black mb-4">
+						<div className="bg-sage p-4 md:p-6 rounded-2xl">
+							<h2 className="text-xl md:text-2xl font-bold text-black mb-4">
 								Your Transactions
 							</h2>
 
 							{fetchLoading ? (
-								<p className="text-black">Loading transactions...</p>
+								<p className="text-black text-center py-8">Loading transactions...</p>
 							) : transactions.length === 0 ? (
-								<p className="text-black">No transactions yet. Add one above!</p>
+								<p className="text-black text-center py-8">No transactions yet. Add one above!</p>
 							) : (
-								<div className="overflow-x-auto">
-									<table className="w-full text-sm text-black">
-										<thead className="border-b-2 border-black">
-											<tr>
-												<th className="text-left p-2">Date</th>
-												<th className="text-left p-2">Category</th>
-												<th className="text-left p-2">Description</th>
-												<th className="text-right p-2">Amount</th>
-												<th className="text-center p-2">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											{transactions.map((t) => (
-												<tr
-													key={t._id}
-													className="border-b border-gray-300 hover:bg-gray-100"
-												>
-													<td className="p-2">
-														{new Date(t.date).toLocaleDateString()}
-													</td>
-													<td className="p-2">{t.category}</td>
-													<td className="p-2">{t.description}</td>
-													<td className="text-right p-2 font-bold">
-														₹{t.amount?.toFixed(2)}
-													</td>
-													<td className="text-center p-2">
+								<>
+									{/* Desktop Table */}
+									<div className="hidden md:block overflow-x-auto">
+										<table className="w-full text-sm text-black">
+											<thead className="border-b-2 border-black">
+												<tr>
+													<th className="text-left p-3">Date</th>
+													<th className="text-left p-3">Category</th>
+													<th className="text-left p-3">Description</th>
+													<th className="text-right p-3">Amount</th>
+													<th className="text-center p-3">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												{transactions.map((t) => (
+													<tr
+														key={t._id}
+														className="border-b border-gray-300 hover:bg-gray-100 transition-colors"
+													>
+														<td className="p-3">
+															{new Date(t.date).toLocaleDateString()}
+														</td>
+														<td className="p-3">{t.category}</td>
+														<td className="p-3">{t.description}</td>
+														<td className="text-right p-3 font-bold">
+															₹{t.amount?.toFixed(2)}
+														</td>
+														<td className="text-center p-3">
+															<button
+																onClick={() => handleDelete(t._id)}
+																disabled={deleting === t._id}
+																className="text-red-500 hover:text-red-700 disabled:opacity-50 px-3 py-1 rounded hover:bg-red-50 transition-colors"
+															>
+																{deleting === t._id ? "..." : "Delete"}
+															</button>
+														</td>
+													</tr>
+												))}
+											</tbody>
+										</table>
+									</div>
+
+									{/* Mobile Cards */}
+									<div className="md:hidden space-y-4">
+										{transactions.map((t) => (
+											<div
+												key={t._id}
+												className="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow"
+											>
+												<div className="flex justify-between items-start mb-2">
+													<div>
+														<h3 className="font-semibold text-black">{t.description}</h3>
+														<p className="text-sm text-gray-600">{t.category}</p>
+														<p className="text-xs text-gray-500">{new Date(t.date).toLocaleDateString()}</p>
+													</div>
+													<div className="text-right">
+														<p className="font-bold text-lg text-black">₹{t.amount?.toFixed(2)}</p>
 														<button
 															onClick={() => handleDelete(t._id)}
 															disabled={deleting === t._id}
-															className="text-red-500 hover:text-red-700 disabled:opacity-50"
+															className="text-red-500 hover:text-red-700 disabled:opacity-50 text-sm mt-2 px-3 py-1 rounded hover:bg-red-50 transition-colors"
 														>
 															{deleting === t._id ? "..." : "Delete"}
 														</button>
-													</td>
-												</tr>
-											))}
-										</tbody>
-									</table>
-								</div>
+													</div>
+												</div>
+											</div>
+										))}
+									</div>
+								</>
 							)}
 						</div>
 					</div>

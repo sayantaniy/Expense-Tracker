@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <div>
-      <footer className="fixed bottom-0 left-0 right-0 text-center text-accent3 bg-sage font-lexend">
+      <footer className="text-center text-accent3 bg-sage font-lexend py-4 mt-16">
         © 2026 Made with ❤️ by Sayantani 
       </footer>
     </div>
